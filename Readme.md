@@ -6,5 +6,7 @@ By following the instructions below one can deploy in their local machine and ru
 Install the following dependencies using the commands below
 ```
 pip install flask
+```
+```
 pip install mysql
 ```
