@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>{{songDetails[0][1]}}</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/" id="home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/uploadfiles" id="upload">Upload</a>
+            </li>
+            <li class="nav-item ml-auto">
+                <form class="search-form" method="GET">
+                    <input type="text" name="songname" id="songname" placeholder="Search for your favourite songs.">
+                    <a class="nav-link" id="Searchbtn" href="#">Search</a>
+                </form>
+            </li>
+        </ul>
+    </div>
+    <div class="selectedSong">
+        <div class="songDet">
+            <h2>{{songDetails[0][1]}}</h2>
+            <img src={{songDetails[0][5]}}>
+            <audio id="song" controls autoplay>
+                <source src="/static/{{songDetails[0][4]}}" type="audio/mpeg">
+            </audio>
+            <a class="songBtn" id="del" href="/deletesong?did={{songDetails[0][0]}}" >Delete</a>
+            <a class="songBtn" id="dwn" href="/static/{{songDetails[0][4]}}" download>Download</a>
+        </div>
+    </div>
+    <script>
+        let searchBox = document.querySelector("#songname");
+        let searchBtn = document.querySelector("#Searchbtn");
+        searchBox.onkeyup = () => {
+            searchBtn.href = "/getsongs?songname=" + searchBox.value;
+        };
+        let audio=document.querySelector("#song");
+        audio.addEventListener("load",()=>{
+            audio.play();
+        });
+    </script>
+</body>

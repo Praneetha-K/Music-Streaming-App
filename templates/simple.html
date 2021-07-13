@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Rune Tunes</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+
+    <div class="navbar">
+        <ul class="nav1">
+            <h1>Welcome to Rune!!!</h1>
+        </ul>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/" id="home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/uploadfiles" id="upload">Upload</a>
+            </li>
+            <li class="nav-item ml-auto">
+                <form class="search-form" method="GET">
+                    <input type="text" name="songname" id="songname" placeholder="Search for your favourite songs.">
+                    <a class="nav-link" id="Searchbtn" href="#">Search</a>
+                </form>
+            </li>
+        </ul>
+    </div>
+    <div class="songsDiv">
+        <div class="songs">
+            {% for entry in entries %}
+            <a href="/song?songId={{entry.sid}}" class="song">
+                <img  id="songimg" src="{{entry.image}}">
+                <div class="songDetails">
+                    <div class="songTitle w-100 d-flex align-items-center">
+                        <h2 class="title">{{entry.title}}</h2>
+                        <div class="playBtn ml-auto">
+                            <img class="playBtnImg m-0" src="https://img.icons8.com/ios-filled/50/000000/play--v1.png"/>
+                        </div>
+                    </div>
+                    <div class="songArtist">
+                        {{entry.artist}}
+                    </div>
+                    <div class="songAlbum">
+                        {{entry.album}}
+                    </div>
+                </div>
+            </a>
+            {% else %}
+            <div style="width: 100%;background: white;color: red;text-align: center;"><em>Unbelievable, No entries so far.</em></div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+<script>
+    let searchBox = document.querySelector("#songname");
+    let searchBtn = document.querySelector("#Searchbtn");
+    searchBox.onkeyup = () => {
+        searchBtn.href = "/getsongs?songname=" + searchBox.value;
+    };
+
+</script>
+
+</html>

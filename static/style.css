@@ -1,0 +1,268 @@
+*{
+    margin: 0;
+    padding: 0;
+    transition: .3s;
+}
+body{
+    background: #1B1464;
+    height: 100vh;
+    width: 100%;
+    overflow: scroll;
+}
+body::-webkit-scrollbar{
+    appearance: none;
+    display: none;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+li{
+    list-style: none;
+}
+input{
+    border: none;
+}
+input[type="button"],input[type="submit"]{
+    cursor: pointer;
+}
+input:focus{
+    outline: none !important;
+}
+.navbar{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    background: #1B1464;
+}
+.nav{
+    display: flex;
+
+}
+.nav1{
+    color:white;
+    text-align:center
+}
+.nav-item{
+    margin: 10px 10px;
+}
+.nav-link{
+    display: block;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+}
+.nav-link:hover{
+    background-color: white;
+    color: black;
+}
+.ml-auto{
+    margin-left: auto;
+}
+.search-form{
+    display: flex;
+}
+.search-form input[type="text"]{
+    width: 50vh;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+}
+#Searchbtn{
+    border-radius: 0 5px 5px 0;
+}
+#Searchbtn:hover{
+    background-color: #009432;
+    color: white;
+}
+.songs{
+    width: 80%;
+    margin-top: 50px;
+    margin-left: 10%;
+    display: inline-flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+#heading{
+    color:white
+    text-align:center
+}
+#songimg{
+     height: 240px;
+      width: 240px;
+}
+.songs .song{
+    margin: 17px 20px;
+    padding: 20px 20px;
+    background: rgba( 255, 255, 255, 0.15 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    color: white;
+    border-radius: 5px;
+}
+.songs .song:hover{
+    transform: scale(1.05);
+    box-shadow: 1px 1px 20px rgba(255,255,255,.3);
+}
+.songDetails *{
+    margin: 5px 0;
+}
+.playBtn{
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.d-flex{
+    display: flex !important;
+}
+.align-items-center{
+    align-items: center;
+}
+.songTitle{
+    position: relative;
+}
+.songTitle .title{
+    width: 80%;
+}
+.playBtnImg{
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 10px;
+}
+.m-0{
+    margin: 0 !important;
+}
+.selectedSong{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.songDet{
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: darkblue;
+    color: white;
+    text-align: center;
+    width: 50vh;
+    border-radius: 5px;
+    box-shadow: 5px 5px 50px darkslateblue;
+}
+.songDet *{
+    width: 100%;
+    margin: 15px 0;
+}
+.songBtn{
+    width: 75%;
+    text-align: center;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+}
+#del{
+    background: red;
+}
+#del:hover{
+    background: rgba(255,0,0,.7);
+}
+#dwn{
+    background: #009432;
+}
+#dwn:hover{
+    background: rgba(0,148,50,.7);
+}
+.messageDiv{
+    color: white;
+    margin-top: 58px;
+    height: 82vh;
+    padding: 40px;
+    width: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.messageDiv *{
+    margin: 10px 0;
+}
+.message{
+    cursor: pointer;
+    width: 25%;
+    text-align: center;
+    padding: 10px 20px;
+    background: rgba( 255, 255, 255, 0.15 );
+}
+.messageDiv a{
+    padding: 10px 10px;
+    background: #009432;
+    color: white;
+    border-radius: 5px;
+}
+.messageDiv a:hover{
+    background: rgba(0,148,50,.7);
+}
+.uploadDiv{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.uploadDiv form{
+    width: 50%;
+    padding: 40px 40px;
+    background: rgba( 255, 255, 255, 0.18 );
+    color: white;
+    border-radius: 5px;
+    display: inline-flex;
+    flex-direction: column;
+}
+.uploadDiv form *{
+    margin: 5px 0;
+}
+.uploadDiv input[type="text"],input[type="submit"]{
+    padding: 15px 10px;
+    border-radius: 5px;
+}
+.uploadDiv input[type="submit"]{
+    margin-left: auto;
+    width: 100px;
+    background: rgba(0,148,50);
+    color: white;
+}
+.uploadDiv input[type="submit"]:hover{
+    background: rgba(0,148,50,.8);
+}
+.uploadDiv input[type="file"]{
+    display: none;
+}
+.file-input{
+    padding: 10px 10px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    cursor: pointer;
+    width: 25%;
+    text-align: center;
+    border-radius: 5px
+}
+.file-input:hover{
+    background: dodgerblue;
+    color: white;
+}
+.name{
+    margin-left: 20px !important;
+}
