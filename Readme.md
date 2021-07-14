@@ -10,3 +10,5 @@ pip install flask
 ```
 pip install mysql
 ```
+```
+pip install werkzeug
