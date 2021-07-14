@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Upload</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/" id="home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/uploadfiles" id="upload">Upload</a>
+            </li>
+            <li class="nav-item ml-auto">
+                <form class="search-form" method="GET">
+                    <input type="text" name="songname" id="songname" placeholder="Search for your favourite songs.">
+                    <a class="nav-link" id="Searchbtn" href="#">Search</a>
+                </form>
+            </li>
+        </ul>
+    </div>
+    <div class="uploadDiv">
+        <form enctype = "multipart/form-data" action="{{url_for('upload')}}" method =  "POST">
+            <!--<input type="text" name="sid" placeholder="Enter Song Id"/></br>-->
+            <input type="text" required name="title" placeholder="Enter Song Title"/></br>
+            <input type="text" required name="artist" placeholder="Enter Song Artist"/></br>
+            <input type="text" required name="album" placeholder="Enter Song Album"/></br>
+            <div class="d-flex align-items-center seperateMargin">
+                <label for="song" class="file-input">Select Song</label>
+                <p class="name" id="songName">No File Selected.</p>
+                <input type="file" required id="song" name="song"/>
+            </div>
+            <div class="d-flex align-items-center seperateMargin">
+                <label for="image" class="file-input">Select Song Image</label>
+                <p class="name" id="imageName">No File Selected.</p>
+                <input type="file" required id="image" name="image"/>
+            </div>
+            <input type="submit" value ="Upload"/>
+        </form>
+    </div>
+    <script>
+        let searchBox = document.querySelector("#songname");
+        let searchBtn = document.querySelector("#Searchbtn");
+        searchBox.onkeyup = () => {
+            searchBtn.href = "/getsongs?songname=" + searchBox.value;
+        };
+        let song=document.querySelector("#song");
+        let image=document.querySelector("#image");
+        let songName=document.querySelector("#songName");
+        let imageName=document.querySelector("#imageName");
+        song.onchange=()=>{
+            songName.innerHTML=song.value.replaceAll("C:\\fakepath\\","");
+        }
+        image.onchange=()=>{
+            imageName.innerHTML=image.value.replaceAll("C:\\fakepath\\","");
+        }
+    </script>
+</body>

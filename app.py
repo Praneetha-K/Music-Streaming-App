@@ -3,7 +3,7 @@ from flask import Flask, render_template, Response,request
 import sys
 import mysql.connector
 import os
-
+from werkzeug.utils import secure_filename
 from mysql.connector import connection
 
 connection = mysql.connector.connect(host='localhost',
@@ -48,6 +48,37 @@ def show_entries():
     stream_entries = return_dict()
 
     return render_template('simple.html', entries=stream_entries, **general_Data)
+
+@app.route('/uploadfiles')
+def uploadfile():
+    return render_template("upload.html")
+
+@app.route('/upload',methods=["GET","POST"])
+def upload():
+    UPLOAD_SONG='D:\downloads\\flask-music-streaming-master\\flask-music-streaming-master\static\\music'
+    app.config['UPLOAD_SONG'] = UPLOAD_SONG
+    UPLOAD_IMG='D:\downloads\\flask-music-streaming-master\\flask-music-streaming-master\static\\'
+    app.config['UPLOAD_IMG'] = UPLOAD_IMG
+    print("upload called")
+    print(request.form)
+    print(request.files)
+    #sid=request.form["sid"]
+    title = request.form["title"]
+    artist = request.form["artist"]
+    album =request.form["album"]
+    #print(sid)
+    uploadImage=request.files["image"]
+    uploadSong=request.files["song"]
+    record=(title,artist,album,"music/"+uploadSong.filename,"static\\"+uploadImage.filename)
+    query="""INSERT INTO songs (title, artist,album,song,image) VALUES ( %s,%s, %s,%s,%s) """
+    cursor=connection.cursor()
+    cursor.execute(query,record)
+    connection.commit()
+    print("inserted")
+    uploadImage.save(os.path.join(app.config['UPLOAD_IMG'], secure_filename(uploadImage.filename)))
+    uploadSong.save(os.path.join(app.config['UPLOAD_SONG'], secure_filename(uploadSong.filename)))
+    print("success")
+    return render_template("success.html")
 
 
 @app.route('/getsongs',methods=["GET","POST"])

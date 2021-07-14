@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Successful</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/" id="home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/uploadfiles" id="upload">Upload</a>
+            </li>
+            <li class="nav-item ml-auto">
+                <form class="search-form" method="GET">
+                    <input type="text" name="songname" id="songname" placeholder="Search for your favourite songs.">
+                    <a class="nav-link" id="Searchbtn" href="#">Search</a>
+                </form>
+            </li>
+        </ul>
+
+    </div>
+    <div class="messageDiv">
+        <div class="message">
+            Upload Successful.
+        </div>
+        <a href="/">View all Songs.</a>
+    </div>
+    <script>
+        let searchBox = document.querySelector("#songname");
+        let searchBtn = document.querySelector("#Searchbtn");
+        searchBox.onkeyup = () => {
+            searchBtn.href = "/getsongs?songname=" + searchBox.value;
+        };
+    </script>
+</body>
