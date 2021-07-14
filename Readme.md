@@ -4,5 +4,9 @@ A simple website for streaming music using flask
 By following the instructions below one can deploy in their local machine and run it.
 ### Installing 
 Install the following dependencies using the commands below
-1. pip install flask
-2. pip install mysql
+```
+pip install flask
+```
+```
+pip install mysql
+```
