@@ -12,3 +12,12 @@ pip install mysql
 ```
 ```
 pip install werkzeug
+```
+Once all the packages are installed run the app.py
+```
+python app.py
+```
+### Running
+```
+http://localhost:5000
+```
