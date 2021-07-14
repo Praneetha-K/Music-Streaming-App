@@ -7,7 +7,7 @@
 <body>
 
     <div class="navbar">
-        <ul class="nav1">
+        <ul class="heading">
             <h1>Welcome to Rune!!!</h1>
         </ul>
         <ul class="nav">
@@ -20,7 +20,7 @@
             <li class="nav-item ml-auto">
                 <form class="search-form" method="GET">
                     <input type="text" name="songname" id="songname" placeholder="Search for your favourite songs.">
-                    <a class="nav-link" id="Searchbtn" href="#">Search</a>
+                    <!--<a class="nav-link" id="Searchbtn" href="#">Search</a>-->
                 </form>
             </li>
         </ul>
@@ -52,12 +52,21 @@
     </div>
 </body>
 <script>
-    let searchBox = document.querySelector("#songname");
-    let searchBtn = document.querySelector("#Searchbtn");
-    searchBox.onkeyup = () => {
-        searchBtn.href = "/getsongs?songname=" + searchBox.value;
-    };
 
+    let searchbar=document.querySelector("#songname");
+        searchbar.onkeyup=()=>{
+            let query=searchbar.value.toLowerCase();
+            console.log(query);
+            let songs=document.getElementsByClassName("song");
+            for(let i=0;i<songs.length;i++){
+                if(songs[i].innerText.toLowerCase().indexOf(query)<0){
+                    songs[i].style.display="none";
+                }
+                else{
+                    songs[i].style.display="block";
+                }
+            }
+        }
 </script>
 
 </html>

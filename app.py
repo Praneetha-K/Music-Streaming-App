@@ -10,6 +10,7 @@ connection = mysql.connector.connect(host='localhost',
                                              database='music',
                                              user='root',
                                              password='root')
+#Getting songs from Db
 def return_dict():
 
     try:
@@ -43,30 +44,23 @@ app = Flask(__name__, static_url_path="/static")
 #Route to render GUI
 @app.route('/')
 def show_entries():
-    general_Data = {
-        'title': 'Music Player'}
     stream_entries = return_dict()
-
-    return render_template('simple.html', entries=stream_entries, **general_Data)
-
+    return render_template('index.html', entries=stream_entries)
+#Route to render to Upload Page
 @app.route('/uploadfiles')
 def uploadfile():
     return render_template("upload.html")
 
+#Route to render after Upload
 @app.route('/upload',methods=["GET","POST"])
 def upload():
     UPLOAD_SONG='D:\downloads\\flask-music-streaming-master\\flask-music-streaming-master\static\\music'
     app.config['UPLOAD_SONG'] = UPLOAD_SONG
     UPLOAD_IMG='D:\downloads\\flask-music-streaming-master\\flask-music-streaming-master\static\\'
     app.config['UPLOAD_IMG'] = UPLOAD_IMG
-    print("upload called")
-    print(request.form)
-    print(request.files)
-    #sid=request.form["sid"]
     title = request.form["title"]
     artist = request.form["artist"]
     album =request.form["album"]
-    #print(sid)
     uploadImage=request.files["image"]
     uploadSong=request.files["song"]
     record=(title,artist,album,"music/"+uploadSong.filename,"static\\"+uploadImage.filename)
@@ -80,7 +74,7 @@ def upload():
     print("success")
     return render_template("success.html")
 
-
+""" Removed functionality for better UX
 @app.route('/getsongs',methods=["GET","POST"])
 def getsongs():
     input = str(request.args.get("songname"));
@@ -98,12 +92,14 @@ def getsongs():
             for row in cursor.fetchall()]
     stream_entries = data
     print(data)
-    return render_template('simple.html', entries=stream_entries)
+    return render_template('index.html', entries=stream_entries)
+"""
 
+#Route to delete a song permanently from Db
 @app.route('/deletesong',methods=["GET","POST"])
 def deletesong():
     dId=int(request.args.get("did"))
-    print(dId)
+    #print(dId)
     query = "delete from songs where sid=" + str(dId) + ";"
     cursor = connection.cursor()
     cursor.execute(query)
@@ -114,12 +110,12 @@ def deletesong():
     column_names = [col[0] for col in desc]
     data = [dict(zip(column_names, row))
             for row in cursor.fetchall()]
-    print(data)
-    return render_template("simple.html", entries=data);
+    #print(data)
+    return render_template("index.html", entries=data);
 
 
 
-
+#Route to move to a particular song page
 @app.route('/song',methods=["GET","POST"])
 def song():
     songId=int(request.args.get("songId"))
@@ -132,8 +128,8 @@ def song():
     print(songDetails)
     return render_template("song.html",songDetails=songDetails);
 
-#launch a Tornado server with HTTPServer.
+#Running the app
 if __name__ == "__main__":
-    app.run(debug=True);
+    app.run("localhost",5000,debug=True);
 
     
