@@ -78,12 +78,12 @@ def upload():
 @app.route('/getsongs',methods=["GET","POST"])
 def getsongs():
     input = str(request.args.get("songname"));
-    print(input)
+    #print(input)
     # get song from db
     data = return_dict()
 
     query = "select * from songs where title like \"%"+str(input)+"%\" or album like \"%"+str(input)+"%\" or artist like \"%"+str(input)+"%\" ; "
-    print(query)
+    #print(query)
     cursor = connection.cursor()
     cursor.execute(query)
     desc = cursor.description
@@ -91,7 +91,7 @@ def getsongs():
     data = [dict(zip(column_names, row))
             for row in cursor.fetchall()]
     stream_entries = data
-    print(data)
+    #print(data)
     return render_template('index.html', entries=stream_entries)
 
 
