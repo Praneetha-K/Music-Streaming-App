@@ -6,10 +6,10 @@ import os
 from werkzeug.utils import secure_filename
 from mysql.connector import connection
 
-connection = mysql.connector.connect(host='localhost',
-                                             database='music',
-                                             user='root',
-                                             password='root')
+connection = mysql.connector.connect(host='sql6.freemysqlhosting.net',
+                                             database='sql6425987',
+                                             user=' sql6425987',
+                                             password='by6bccuNLw')
 #Getting songs from Db
 def return_dict():
 
