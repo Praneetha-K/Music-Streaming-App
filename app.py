@@ -54,9 +54,9 @@ def uploadfile():
 #Route to render after Upload
 @app.route('/upload',methods=["GET","POST"])
 def upload():
-    UPLOAD_SONG='D:\downloads\\flask-music-streaming-master\\flask-music-streaming-master\static\\music'
+    UPLOAD_SONG='static\music'
     app.config['UPLOAD_SONG'] = UPLOAD_SONG
-    UPLOAD_IMG='D:\downloads\\flask-music-streaming-master\\flask-music-streaming-master\static\\'
+    UPLOAD_IMG='static\'
     app.config['UPLOAD_IMG'] = UPLOAD_IMG
     title = request.form["title"]
     artist = request.form["artist"]
@@ -68,10 +68,10 @@ def upload():
     cursor=connection.cursor()
     cursor.execute(query,record)
     connection.commit()
-    print("inserted")
+    #print("inserted")
     uploadImage.save(os.path.join(app.config['UPLOAD_IMG'], secure_filename(uploadImage.filename)))
     uploadSong.save(os.path.join(app.config['UPLOAD_SONG'], secure_filename(uploadSong.filename)))
-    print("success")
+    #print("success")
     return render_template("success.html")
 
 """ Removed functionality for better UX
@@ -125,11 +125,11 @@ def song():
     cursor=connection.cursor()
     cursor.execute(query)
     songDetails=cursor.fetchall();
-    print(songDetails)
+    #print(songDetails)
     return render_template("song.html",songDetails=songDetails);
 
 #Running the app
 if __name__ == "__main__":
-    app.run("localhost",5000,debug=True);
+    app.run("localhost",5000);
 
     
