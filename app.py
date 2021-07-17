@@ -56,7 +56,7 @@ def uploadfile():
 def upload():
     UPLOAD_SONG='static\music'
     app.config['UPLOAD_SONG'] = UPLOAD_SONG
-    UPLOAD_IMG='static\'
+    UPLOAD_IMG='static\\'
     app.config['UPLOAD_IMG'] = UPLOAD_IMG
     title = request.form["title"]
     artist = request.form["artist"]
@@ -74,7 +74,7 @@ def upload():
     #print("success")
     return render_template("success.html")
 
-""" Removed functionality for better UX
+
 @app.route('/getsongs',methods=["GET","POST"])
 def getsongs():
     input = str(request.args.get("songname"));
@@ -93,7 +93,7 @@ def getsongs():
     stream_entries = data
     print(data)
     return render_template('index.html', entries=stream_entries)
-"""
+
 
 #Route to delete a song permanently from Db
 @app.route('/deletesong',methods=["GET","POST"])
