@@ -7,9 +7,9 @@ from werkzeug.utils import secure_filename
 from mysql.connector import connection
 
 connection = mysql.connector.connect(host='sql6.freemysqlhosting.net',
-                                             database='sql6425987',
-                                             user=' sql6425987',
-                                             password='by6bccuNLw')
+                                             database='sql6427411',
+                                             user='sql6427411',
+                                             password='6H5SSNrIDT')
 #Getting songs from Db
 def return_dict():
 
